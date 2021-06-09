@@ -1,0 +1,845 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Bond 2nd market api info",
+    "description": "An example API documentation for a Bond 2nd market api info.\n",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "BaseHeaderRequest": {
+        "type": "object",
+        "properties": {
+          "reqID": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "reqChannel": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "reqDtm": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "reqBy": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "service": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "sofType": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "cardNo": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "txnRefID": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          }
+        }
+      },
+      "BaseHeaderResponse": {
+        "type": "object",
+        "properties": {
+          "reqID": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "reqDtm": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "txnRefID": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "service": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "statusCd": {
+            "type": "string",
+            "example": "0000",
+            "description": "mandatory = Y"
+          },
+          "statusDesc": {
+            "type": "string",
+            "example": "Success",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "AgreementContentRequest": {
+        "type": "object",
+        "properties": {
+          "thaiSymbol": {
+            "type": "string",
+            "example": "CPDATE001",
+            "description": "mandatory = Y"
+          },
+          "sellingCriteriaId": {
+            "type": "string",
+            "example": "240",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "AgreementContentResponse": {
+        "type": "object",
+        "properties": {
+          "marketingText": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "factSheet": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "ItemsGetPrimaryRequest": {
+        "type": "object",
+        "properties": {
+          "walletId": {
+            "type": "string",
+            "example": "006880042081968",
+            "description": "mandatory = Y"
+          },
+          "pageNo": {
+            "type": "integer",
+            "example": "1",
+            "description": "mandatory = Y"
+          },
+          "pageSize": {
+            "type": "integer",
+            "example": "10",
+            "description": "mandatory = Y"
+          },
+          "search": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "sort": {
+            "type": "string",
+            "example": "startDate",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "ItemsGetPrimaryResponse": {
+        "type": "object",
+        "properties": {
+          "paging": {
+            "$ref": "#/components/schemas/Paging"
+          },
+          "items": {
+            "type": "array",
+            "description": "",
+            "items": {
+              "$ref": "#/components/schemas/PrimaryMKT"
+            }
+          }
+        }
+      },
+      "PrimaryMKT": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "O",
+            "description": "mandatory = Y"
+          },
+          "thaiSymbol": {
+            "type": "string",
+            "example": "CPDATE001",
+            "description": "mandatory = Y"
+          },
+          "bondGroupName": {
+            "type": "string",
+            "example": "พันธบัตรออมทรัพย์ CPDATE001 กระทรวงการคลัง ในปีงบประมาณ พ.ศ. 2564 ครั้งที่ 1 รุ่น 2 ปี",
+            "description": "mandatory = Y"
+          },
+          "interestRate": {
+            "type": "number",
+            "example": "0",
+            "description": "mandatory = Y"
+          },
+          "interestRateModel": {
+            "$ref": "#/components/schemas/InterestRate"
+          },
+          "startDate": {
+            "type": "string",
+            "example": "2021-06-02T08:30:00",
+            "description": "mandatory = Y"
+          },
+          "endDate": {
+            "type": "string",
+            "example": "2021-06-30T15:00:00",
+            "description": "mandatory = Y"
+          },
+          "parValue": {
+            "type": "number",
+            "example": "1",
+            "description": "mandatory = Y"
+          },
+          "lowestLimitToBuy": {
+            "type": "number",
+            "example": "0",
+            "description": "",
+            "nullable": true
+          },
+          "multipleToBuy": {
+            "type": "number",
+            "example": "1",
+            "description": "",
+            "nullable": true
+          },
+          "prospectusLink": {
+            "type": "string",
+            "example": "https://www.pdmo.go.th/pdmomedia/documents/2018/Aug/loan_20161209143157.pdf",
+            "description": "mandatory = Y"
+          },
+          "knowBeforeBuyingLink": {
+            "type": "string",
+            "example": "/data/documents/234_2_20210602155426.pdf",
+            "description": "mandatory = Y"
+          },
+          "maturityDate": {
+            "type": "string",
+            "example": "2023-06-02T00:00:00",
+            "description": "mandatory = Y"
+          },
+          "sellingCriteriaId": {
+            "type": "integer",
+            "example": "240",
+            "description": "mandatory = Y"
+          },
+          "bondType": {
+            "type": "string",
+            "example": "13",
+            "description": "mandatory = Y"
+          },
+          "factSheet": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "limitToBuy": {
+            "type": "string",
+            "example": "N",
+            "description": "",
+            "nullable": true
+          },
+          "issueDate": {
+            "type": "string",
+            "example": "2021-06-02",
+            "description": "",
+            "nullable": true
+          },
+          "maxRate": {
+            "type": "number",
+            "example": "5.5",
+            "description": "mandatory = Y"
+          },
+          "firstCouponDate": {
+            "type": "string",
+            "example": "2021-12-02",
+            "description": "",
+            "nullable": true
+          },
+          "couponPaymentDate": {
+            "type": "string",
+            "example": "2021-12-02",
+            "description": "",
+            "nullable": true
+          }
+        }
+      },
+      "InterestRate": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "example": "ดอกเบี้ยต่อปี",
+            "description": "mandatory = Y"
+          },
+          "interest": {
+            "type": "string",
+            "example": "5.5%",
+            "description": "mandatory = Y"
+          },
+          "extraLabel": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "paymentType": {
+            "type": "string",
+            "example": "01",
+            "description": "mandatory = Y"
+          },
+          "interestTypeText": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "items": {
+            "type": "array",
+            "description": "",
+            "items": {
+              "$ref": "#/components/schemas/InterestRateItem"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "InterestRateItem": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "interest": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "extraLabel": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "interestTypeText": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "ItemsGetSecondaryRequest": {
+        "type": "object",
+        "properties": {
+          "walletId": {
+            "type": "string",
+            "example": "006880042081968",
+            "description": "mandatory = Y"
+          },
+          "pageNo": {
+            "type": "integer",
+            "example": "1",
+            "description": "mandatory = Y"
+          },
+          "pageSize": {
+            "type": "integer",
+            "example": "10",
+            "description": "mandatory = Y"
+          },
+          "search": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "sort": {
+            "type": "string",
+            "example": "interest",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "ItemsGetSecondaryMKTResponse": {
+        "type": "object",
+        "properties": {
+          "paging": {
+            "$ref": "#/components/schemas/Paging"
+          },
+          "items": {
+            "type": "array",
+            "description": "",
+            "items": {
+              "$ref": "#/components/schemas/SecondaryMKT"
+            }
+          }
+        }
+      },
+      "SecondaryMKT": {
+        "type": "object",
+        "properties": {
+          "bondGroupName": {
+            "type": "string",
+            "example": "พันธบัตรออมทรัพย์ CPDATE001 กระทรวงการคลัง ในปีงบประมาณ พ.ศ. 2564 ครั้งที่ 1",
+            "description": "mandatory = Y"
+          },
+          "interestRateModel": {
+            "$ref": "#/components/schemas/InterestRate"
+          },
+          "interestRate": {
+            "type": "string",
+            "example": "0",
+            "description": "mandatory = Y"
+          },
+          "thaiSymbol": {
+            "type": "string",
+            "example": "CPDATE001",
+            "description": "mandatory = Y"
+          },
+          "marketingText": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "maturityDate": {
+            "type": "string",
+            "example": "2023-06-02",
+            "description": "",
+            "nullable": true
+          },
+          "factSheet": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "parValue": {
+            "type": "number",
+            "example": "1",
+            "description": "",
+            "nullable": true
+          },
+          "bondType": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "prospectusLink": {
+            "type": "string",
+            "example": "https://www.pdmo.go.th/pdmomedia/documents/2018/Aug/loan_20161209143157.pdf",
+            "description": "mandatory = Y"
+          },
+          "priceList": {
+            "type": "array",
+            "description": "",
+            "items": {
+              "$ref": "#/components/schemas/Price"
+            }
+          },
+          "issueDate": {
+            "type": "string",
+            "example": "2021-06-02",
+            "description": "mandatory = Y",
+            "nullable": true
+          },
+          "maxRate": {
+            "type": "number",
+            "example": "5.5",
+            "description": "mandatory = Y"
+          },
+          "firstCouponDate": {
+            "type": "string",
+            "example": "2021-12-02",
+            "description": "",
+            "nullable": true
+          },
+          "couponPaymentDate": {
+            "type": "string",
+            "example": "2021-12-02",
+            "description": "",
+            "nullable": true
+          }
+        }
+      },
+      "Price": {
+        "type": "object",
+        "properties": {
+          "incrementUnit": {
+            "type": "integer",
+            "example": "100",
+            "description": "",
+            "nullable": true
+          },
+          "minimumUnit": {
+            "type": "integer",
+            "example": "100",
+            "description": "",
+            "nullable": true
+          },
+          "bidDirtyPrice": {
+            "type": "string",
+            "example": "1.163277",
+            "description": "",
+            "nullable": true
+          },
+          "bidInventory": {
+            "type": "string",
+            "example": "100000000",
+            "description": "",
+            "nullable": true
+          },
+          "bidYield": {
+            "type": "string",
+            "example": "1.07",
+            "description": "",
+            "nullable": true
+          },
+          "bidAccruedInterest": {
+            "type": "string",
+            "example": "0.052577",
+            "description": "",
+            "nullable": true
+          },
+          "bidCleanPrice": {
+            "type": "string",
+            "example": "1.1107",
+            "description": "",
+            "nullable": true
+          },
+          "cur": {
+            "type": "string",
+            "example": "THB",
+            "description": "",
+            "nullable": true
+          },
+          "cutoffTime": {
+            "type": "string",
+            "example": "23:59:59",
+            "description": "",
+            "nullable": true
+          },
+          "mmCode": {
+            "type": "string",
+            "example": "KTB220201123123931",
+            "description": "",
+            "nullable": true
+          },
+          "mmImageBase64": {
+            "type": "string",
+            "example": "",
+            "description": "image in base 64 format",
+            "nullable": true
+          },
+          "mmNameEn": {
+            "type": "string",
+            "example": "Krungthai Bank PCL",
+            "description": "",
+            "nullable": true
+          },
+          "mmNameTh": {
+            "type": "string",
+            "example": "ธนาคารกรุงไทย จำกัด มหาชน",
+            "description": "",
+            "nullable": true
+          },
+          "mmWalletId": {
+            "type": "string",
+            "example": "006880090311754",
+            "description": "",
+            "nullable": true
+          },
+          "offerDirtyPrice": {
+            "type": "string",
+            "example": "1.163877",
+            "description": "",
+            "nullable": true
+          },
+          "offerInventory": {
+            "type": "string",
+            "example": "100000000",
+            "description": "",
+            "nullable": true
+          },
+          "offerYield": {
+            "type": "string",
+            "example": "1.13",
+            "description": "",
+            "nullable": true
+          },
+          "offerAccruedInterest": {
+            "type": "string",
+            "example": "0.052577",
+            "description": "",
+            "nullable": true
+          },
+          "offerCleanPrice": {
+            "type": "string",
+            "example": "1.1113",
+            "description": "",
+            "nullable": true
+          },
+          "parValue": {
+            "type": "number",
+            "example": "1",
+            "description": "",
+            "nullable": true
+          },
+          "refPricingNo": {
+            "type": "string",
+            "example": "202106090009",
+            "description": "",
+            "nullable": true
+          },
+          "settlementDate": {
+            "type": "string",
+            "example": "20210609",
+            "description": "",
+            "nullable": true
+          }
+        }
+      },
+      "Paging": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "example": "1",
+            "description": "mandatory = Y"
+          },
+          "pageSize": {
+            "type": "integer",
+            "example": "10",
+            "description": "mandatory = Y"
+          },
+          "totalElements": {
+            "type": "integer",
+            "example": "3",
+            "description": "mandatory = Y"
+          }
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "ERROR",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Describes the error in a human-readable format.",
+                  "type": "string",
+                  "example": "Permission denied."
+                }
+              }
+            }
+          }
+        }
+      },
+      "bnd9999": {
+        "description": "bnd 9999",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "error ไม่สามารถเชื่อมต่อได้.",
+                  "type": "string",
+                  "example": "error ไม่สามารถเชื่อมต่อได้."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/agreement/content/get": {
+      "post": {
+        "tags": [
+          "agreement"
+        ],
+        "summary": "get agreement info",
+        "description": "get agreement info",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "headerReq": {
+                    "$ref": "#/components/schemas/BaseHeaderRequest"
+                  },
+                  "content": {
+                    "$ref": "#/components/schemas/AgreementContentRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headerReq": {
+                      "$ref": "#/components/schemas/BaseHeaderResponse"
+                    },
+                    "content": {
+                      "$ref": "#/components/schemas/AgreementContentResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          },
+          "bnd9999": {
+            "$ref": "#/components/responses/bnd9999"
+          }
+        }
+      }
+    },
+    "/items/primary-mkt/get": {
+      "post": {
+        "tags": [
+          "bondItem"
+        ],
+        "summary": "get 1st bond info",
+        "description": "get 2nd bond info",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "headerReq": {
+                    "$ref": "#/components/schemas/BaseHeaderRequest"
+                  },
+                  "content": {
+                    "$ref": "#/components/schemas/ItemsGetPrimaryRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headerReq": {
+                      "$ref": "#/components/schemas/BaseHeaderResponse"
+                    },
+                    "content": {
+                      "$ref": "#/components/schemas/ItemsGetPrimaryResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/items/secondary-mkt/get": {
+      "post": {
+        "tags": [
+          "bondItem"
+        ],
+        "summary": "get 2nd bond info",
+        "description": "get 2nd bond info",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "headerReq": {
+                    "$ref": "#/components/schemas/BaseHeaderRequest"
+                  },
+                  "content": {
+                    "$ref": "#/components/schemas/ItemsGetSecondaryRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headerReq": {
+                      "$ref": "#/components/schemas/BaseHeaderResponse"
+                    },
+                    "content": {
+                      "$ref": "#/components/schemas/ItemsGetSecondaryMKTResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  }
+}
