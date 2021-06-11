@@ -1,0 +1,1167 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "bond-lg-pledge-api",
+    "description": "An example API documentation for a bond-registration-ktb-profile-callback-api.\n<br> base url uat : https://www.uat-inno.ktb.co.th/paotang\n<br> flow reference :\n",
+    "version": "1.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000/",
+      "description": "Develop"
+    },
+    {
+      "url": "https://www.uat-inno.ktb.co.th/paotang",
+      "description": "Uat"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "BaseHeaderRequest": {
+        "type": "object",
+        "properties": {
+          "reqID": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "reqChannel": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "reqDtm": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "reqBy": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "service": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "sofType": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "cardNo": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "txnRefID": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          }
+        }
+      },
+      "BaseHeaderResponse": {
+        "type": "object",
+        "properties": {
+          "reqID": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "reqDtm": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "txnRefID": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "service": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "statusCd": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "statusDesc": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "FormSubmitRequest": {
+        "type": "object",
+        "properties": {
+          "walletId": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "contingentTypeId": {
+            "type": "integer",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "lgAmount": {
+            "type": "number",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "lgEffectiveDate": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "lgExpiryDate": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "receiveDocBranch": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "beneficiaryName": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "inTheNameOf": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "bondList": {
+            "type": "array",
+            "description": "",
+            "items": {
+              "$ref": "#/components/schemas/BondReg"
+            }
+          },
+          "provinceCode": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "districtCode": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "branchCode": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "BondReg": {
+        "type": "object",
+        "properties": {
+          "thaiSymbol": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "bondLgAmount": {
+            "type": "number",
+            "example": "",
+            "description": "mandatory = Y, หน่วย bond จะเสีย"
+          },
+          "bondTotalAmount": {
+            "type": "number",
+            "example": "",
+            "description": "mandatory = Y, เงิน จะที่ได้หลังจำนำ"
+          },
+          "holdingCurrency": {
+            "type": "number",
+            "example": "",
+            "description": "mandatory = Y, มูลค่าเงินที่มีทั้งหมด ของ bond"
+          }
+        }
+      },
+      "FormSubmitResponse": {
+        "type": "object",
+        "properties": {
+          "txID": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          }
+        }
+      },
+      "InformRequest": {
+        "type": "object",
+        "properties": {
+          "walletId": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "pledgeId": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "example": "",
+            "description": "",
+            "nullable": true
+          },
+          "remark": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "PledgeItemsRequest": {
+        "type": "object",
+        "properties": {
+          "walletId": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "PledgeItemsResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "",
+            "items": {
+              "type": "object",
+              "properties": {
+                "thaiSymbol": {
+                  "type": "string",
+                  "example": "",
+                  "description": "",
+                  "nullable": true
+                },
+                "bondName": {
+                  "type": "string",
+                  "example": "",
+                  "description": "",
+                  "nullable": true
+                },
+                "currencyAvailableAmount": {
+                  "type": "string",
+                  "example": "",
+                  "description": "",
+                  "nullable": true
+                },
+                "parValue": {
+                  "type": "number",
+                  "example": "",
+                  "description": "",
+                  "nullable": true
+                },
+                "maturityDate": {
+                  "type": "string",
+                  "example": "",
+                  "description": "",
+                  "nullable": true
+                },
+                "holdingCurrency": {
+                  "type": "number",
+                  "example": "",
+                  "description": "",
+                  "nullable": true
+                },
+                "fee": {
+                  "type": "integer",
+                  "example": "",
+                  "description": "mandatory = Y"
+                },
+                "percentLtv": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y"
+                }
+              }
+            }
+          }
+        }
+      },
+      "LgItemsRequest": {
+        "type": "object",
+        "properties": {
+          "channelId": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          },
+          "walletId": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "LgItemsResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "",
+            "items": {
+              "type": "object",
+              "properties": {
+                "refId": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "lgNumber": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "lgAmount": {
+                  "type": "number",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "status": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "statusDescription": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "lgEffectiveDate": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "lgExpiryDate": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "beneficiaryName": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "contingentTypeId": {
+                  "type": "integer",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "contingentTypeName": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "currencyCode": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "cifNo": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "description": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "ProvinceMasterItemResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "",
+            "items": {
+              "type": "object",
+              "properties": {
+                "provinceCode": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y"
+                },
+                "provinceName": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "DistrictRequest": {
+        "type": "object",
+        "properties": {
+          "provinceCode": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "DistrictMasterItemResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "",
+            "items": {
+              "type": "object",
+              "properties": {
+                "provinceCode": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y"
+                },
+                "districtCode": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y"
+                },
+                "districtName": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "BranchRequest": {
+        "type": "object",
+        "properties": {
+          "districtCode": {
+            "type": "string",
+            "example": "",
+            "description": "mandatory = Y"
+          }
+        }
+      },
+      "BranchMasterItemResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "",
+            "items": {
+              "type": "object",
+              "properties": {
+                "branchCode": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y"
+                },
+                "branchName": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y"
+                },
+                "districtCode": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "address1": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "address2": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "address3": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "districtCodeCity": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "brSt": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "brCo": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "zipCode": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                },
+                "costCenter": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "TypeMasterItemResponse": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "",
+            "items": {
+              "type": "object",
+              "properties": {
+                "typeId": {
+                  "type": "integer",
+                  "example": "",
+                  "description": "mandatory = Y"
+                },
+                "typeDesc": {
+                  "type": "string",
+                  "example": "",
+                  "description": "mandatory = Y"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "ERROR",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Describes the error in a human-readable format.",
+                  "type": "string",
+                  "example": "Permission denied."
+                }
+              }
+            }
+          }
+        }
+      },
+      "ERR0001": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Invalid request message",
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "ERR0002": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Not found registration profile",
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "ERR0003": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Qualification Fail",
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "ERR0004": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Invalid customerId",
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "ERR0005": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "User Profile Not Found",
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "ERR0006": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Permission denied",
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "ERR0016": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Investor Profile not found",
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "ERR0024": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "Wallet profile not found",
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "ERR9999": {
+        "description": "",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "description": "System Error",
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/form-submit": {
+      "post": {
+        "tags": [
+          "formSubmit"
+        ],
+        "summary": "test",
+        "description": "test",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "headerReq": {
+                    "$ref": "#/components/schemas/BaseHeaderRequest"
+                  },
+                  "content": {
+                    "$ref": "#/components/schemas/FormSubmitRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headerResp": {
+                      "$ref": "#/components/schemas/BaseHeaderResponse"
+                    },
+                    "content": {
+                      "$ref": "#/components/schemas/FormSubmitResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/informant/inform": {
+      "post": {
+        "tags": [
+          "informant"
+        ],
+        "summary": "test",
+        "description": "test",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "headerReq": {
+                    "$ref": "#/components/schemas/BaseHeaderRequest"
+                  },
+                  "content": {
+                    "$ref": "#/components/schemas/InformRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headerResp": {
+                      "$ref": "#/components/schemas/BaseHeaderResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/pledge-items/get": {
+      "post": {
+        "tags": [
+          "items"
+        ],
+        "summary": "test",
+        "description": "test",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "headerReq": {
+                    "$ref": "#/components/schemas/BaseHeaderRequest"
+                  },
+                  "content": {
+                    "$ref": "#/components/schemas/PledgeItemsRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headerResp": {
+                      "$ref": "#/components/schemas/BaseHeaderResponse"
+                    },
+                    "content": {
+                      "$ref": "#/components/schemas/PledgeItemsResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/lg-items/get": {
+      "post": {
+        "tags": [
+          "items"
+        ],
+        "summary": "test",
+        "description": "test",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "headerReq": {
+                    "$ref": "#/components/schemas/BaseHeaderRequest"
+                  },
+                  "content": {
+                    "$ref": "#/components/schemas/LgItemsRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headerResp": {
+                      "$ref": "#/components/schemas/BaseHeaderResponse"
+                    },
+                    "content": {
+                      "$ref": "#/components/schemas/LgItemsResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/province/get": {
+      "post": {
+        "tags": [
+          "master"
+        ],
+        "summary": "test",
+        "description": "test",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "headerReq": {
+                    "$ref": "#/components/schemas/BaseHeaderRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headerResp": {
+                      "$ref": "#/components/schemas/BaseHeaderResponse"
+                    },
+                    "content": {
+                      "$ref": "#/components/schemas/ProvinceMasterItemResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/district/get": {
+      "post": {
+        "tags": [
+          "master"
+        ],
+        "summary": "test",
+        "description": "test",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "headerReq": {
+                    "$ref": "#/components/schemas/BaseHeaderRequest"
+                  },
+                  "content": {
+                    "$ref": "#/components/schemas/DistrictRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headerResp": {
+                      "$ref": "#/components/schemas/BaseHeaderResponse"
+                    },
+                    "content": {
+                      "$ref": "#/components/schemas/DistrictMasterItemResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/branch/get": {
+      "post": {
+        "tags": [
+          "master"
+        ],
+        "summary": "test",
+        "description": "test",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "headerReq": {
+                    "$ref": "#/components/schemas/BaseHeaderRequest"
+                  },
+                  "content": {
+                    "$ref": "#/components/schemas/BranchRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headerResp": {
+                      "$ref": "#/components/schemas/BaseHeaderResponse"
+                    },
+                    "content": {
+                      "$ref": "#/components/schemas/BranchMasterItemResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/type/get": {
+      "post": {
+        "tags": [
+          "master"
+        ],
+        "summary": "test",
+        "description": "test",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "headerReq": {
+                    "$ref": "#/components/schemas/BaseHeaderRequest"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "headerResp": {
+                      "$ref": "#/components/schemas/BaseHeaderResponse"
+                    },
+                    "content": {
+                      "$ref": "#/components/schemas/TypeMasterItemResponse"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  }
+}
